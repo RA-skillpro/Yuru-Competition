@@ -1,1 +1,0 @@
-# Yuru-Competition
