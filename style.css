@@ -731,45 +731,116 @@ img[src*="judge_tokuda"] {
     padding: 100px 0;
 }
 
-.cta-box {
-    background: linear-gradient(135deg, var(--c-primary), #FF9E63);
-    border-radius: var(--radius-lg);
-    padding: 80px 40px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 20px 40px rgba(255, 123, 84, 0.3);
-    position: relative;
-    overflow: hidden;
+.cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
-.cta-box h2 {
+.cta-card {
+    border-radius: var(--radius-lg);
+    padding: 60px 40px;
+    text-align: center;
     color: white;
-    font-size: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--trans);
+}
+
+.cta-card:hover {
+    transform: translateY(-8px);
+}
+
+.cta-card.entry-card {
+    background: linear-gradient(135deg, var(--c-primary), #FF9E63);
+    box-shadow: 0 20px 40px rgba(255, 123, 84, 0.25);
+}
+
+.cta-card.submit-card {
+    background: linear-gradient(135deg, #4A9B90, var(--c-tertiary));
+    box-shadow: 0 20px 40px rgba(74, 155, 144, 0.25);
+}
+
+.cta-card-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 24px;
 }
 
-.cta-box p {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    opacity: 0.9;
+.cta-card-icon svg {
+    width: 36px;
+    height: 36px;
+    color: white;
 }
 
-.cta-box .btn-primary {
+.cta-card h3 {
+    font-size: 28px;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.cta-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 0.95;
+    margin-bottom: 32px;
+    flex-grow: 1;
+    max-width: 420px;
+}
+
+.cta-card .btn-cta {
     background-color: white;
+    font-size: 18px;
+    padding: 14px 36px;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.entry-card .btn-cta {
     color: var(--c-primary);
 }
 
-.cta-box .btn-primary:hover {
+.entry-card .btn-cta:hover {
     background-color: var(--c-secondary);
     color: #5A4711;
+    box-shadow: 0 14px 25px rgba(255, 213, 111, 0.4);
 }
 
-.cta-note {
-    margin-top: 24px !important;
-    font-size: 14px !important;
-    margin-bottom: 0 !important;
-    opacity: 0.7 !important;
+.submit-card .btn-cta {
+    color: #3b7d74;
+}
+
+.submit-card .btn-cta:hover {
+    background-color: var(--c-secondary);
+    color: #5A4711;
+    box-shadow: 0 14px 25px rgba(255, 213, 111, 0.4);
+}
+
+.cta-inquiry {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--c-text-light);
+    font-size: 15px;
+}
+
+.cta-inquiry a {
+    color: var(--c-primary);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.cta-inquiry a:hover {
+    color: var(--c-primary-dark);
 }
 
 /* Footer */
@@ -855,6 +926,11 @@ img[src*="judge_tokuda"] {
     .rules-container {
         grid-template-columns: 1fr;
     }
+
+    .cta-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -870,12 +946,12 @@ img[src*="judge_tokuda"] {
         padding: 60px 0;
     }
 
-    .cta-box {
-        padding: 60px 20px;
+    .cta-card {
+        padding: 40px 24px;
     }
 
-    .cta-box h2 {
-        font-size: 32px;
+    .cta-card h3 {
+        font-size: 24px;
     }
 
     .footer-content {
