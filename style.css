@@ -207,6 +207,7 @@ ul {
     top: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
@@ -230,13 +231,15 @@ ul {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 20px;
 }
 
 .nav-links a:not(.btn) {
     font-weight: 500;
     color: var(--c-text);
     position: relative;
+    white-space: nowrap;
+    font-size: 15px;
 }
 
 .nav-links a:not(.btn):hover {
@@ -253,6 +256,10 @@ ul {
     background-color: var(--c-primary);
     border-radius: 4px;
     transition: var(--trans);
+}
+
+.nav-links a.nav-highlight::after {
+    display: none;
 }
 
 .nav-links a:not(.btn):hover::after {
@@ -600,7 +607,7 @@ ul {
 .timeline-item {
     position: relative;
     padding-top: 100px;
-    flex: 1 1 0;
+    flex: 1 1 0px;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -692,8 +699,11 @@ ul {
     background-color: var(--c-bg-light);
     flex-shrink: 0;
     transform: translateZ(0);
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-    mask-image: radial-gradient(white, black);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    mask-image: radial-gradient(circle, white 100%, black 100%);
+    isolation: isolate;
 }
 
 .judge-photo img {
@@ -701,6 +711,8 @@ ul {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 img[src*="judge_tomita"] {
@@ -933,7 +945,20 @@ img[src*="judge_tokuda"] {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 12px;
+    }
+    .nav-links a:not(.btn) {
+        font-size: 14px;
+    }
+    .nav-highlight {
+        padding: 5px 10px;
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 860px) {
     .nav-links {
         display: none;
     }
@@ -1180,6 +1205,8 @@ img[src*="judge_tokuda"] {
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    white-space: nowrap;
+    transition: var(--trans);
 }
 
 .nav-highlight:hover {
@@ -1187,6 +1214,12 @@ img[src*="judge_tokuda"] {
     color: white !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 123, 84, 0.3);
+}
+
+.nav-highlight.active {
+    background-color: var(--c-primary);
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(255, 123, 84, 0.25);
 }
 
 .nav-links a.active-link {
@@ -1356,6 +1389,10 @@ img[src*="judge_tokuda"] {
     align-items: start;
 }
 
+.winner-meta-grid > * {
+    min-width: 0;
+}
+
 @media (max-width: 960px) {
     .winner-meta-grid {
         grid-template-columns: 1fr;
@@ -1370,6 +1407,8 @@ img[src*="judge_tokuda"] {
     box-shadow: var(--shadow-md);
     cursor: pointer;
     background: #FAFAFA;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    isolation: isolate;
 }
 
 .winner-preview-box img {
@@ -1396,6 +1435,7 @@ img[src*="judge_tokuda"] {
     display: flex;
     align-items: center;
     gap: 6px;
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     transition: var(--trans);
 }
@@ -1563,11 +1603,15 @@ img[src*="judge_tokuda"] {
     overflow-y: auto;
 }
 
-.winner-modal-image {
+.winner-modal-image,
+.winner-modal-image-large {
     width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: var(--radius-md);
     border: 1px solid var(--c-border);
     margin-bottom: 20px;
+    display: block;
 }
 
 @media (max-width: 768px) {
@@ -1585,5 +1629,311 @@ img[src*="judge_tokuda"] {
     
     .work-title {
         font-size: 20px;
+    }
+}
+
+/* ==========================================
+   Ceremony Report Styles
+   ========================================== */
+
+.ceremony-hero {
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFF3E0 50%, #FFEFE5 100%);
+    padding: 150px 0 60px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 123, 84, 0.15);
+}
+
+.ceremony-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--c-primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(255, 123, 84, 0.3);
+}
+
+.ceremony-hero-title {
+    font-size: 40px;
+    line-height: 1.35;
+    color: var(--c-text);
+    margin-bottom: 18px;
+}
+
+.ceremony-hero-subtitle {
+    font-size: 17px;
+    color: var(--c-text-light);
+    max-width: 820px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+}
+
+.ceremony-meta-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 24px 32px;
+    box-shadow: var(--shadow-card);
+    max-width: 860px;
+    margin: 0 auto;
+    border: 2px solid #FFE4D6;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px 24px;
+    text-align: left;
+}
+
+.ceremony-meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.ceremony-meta-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFF3E0;
+    color: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ceremony-meta-label {
+    font-size: 12px;
+    color: var(--c-text-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ceremony-meta-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-top: 2px;
+}
+
+/* Photo Gallery & Cards */
+.ceremony-photo-card {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--c-border);
+    transition: var(--trans);
+    display: flex;
+    flex-direction: column;
+}
+
+.ceremony-photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+.ceremony-photo-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: #F8FAFC;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+}
+
+.ceremony-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ceremony-photo-card:hover .ceremony-photo-wrapper img {
+    transform: scale(1.05);
+}
+
+.ceremony-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ceremony-photo-wrapper:hover .ceremony-photo-overlay {
+    opacity: 1;
+}
+
+.ceremony-photo-caption {
+    padding: 16px 20px;
+    background: white;
+    flex-grow: 1;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+}
+
+.ceremony-photo-title {
+    font-size: 16px;
+    font-weight: 800;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: var(--c-text);
+    margin-bottom: 4px;
+}
+
+.ceremony-photo-desc {
+    font-size: 13.5px;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    color: var(--c-text-light);
+    line-height: 1.5;
+}
+
+/* Winner Grid for Ceremony Report */
+.ceremony-winner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.ceremony-winner-card {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    border: 2px solid var(--c-border);
+    transition: var(--trans);
+    display: flex;
+    flex-direction: column;
+}
+
+.ceremony-winner-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(255, 123, 84, 0.15);
+    border-color: var(--c-primary);
+}
+
+.ceremony-winner-badge {
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ceremony-winner-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+}
+
+.ceremony-winner-name {
+    font-size: 19px;
+    font-weight: 800;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: var(--c-text);
+    margin-bottom: 4px;
+}
+
+.ceremony-winner-org {
+    font-size: 13.5px;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    color: var(--c-text-light);
+    margin-bottom: 14px;
+}
+
+/* Discussion Topic Badges */
+.discussion-topic-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    border-left: 5px solid var(--c-primary);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+    transition: var(--trans);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+}
+
+.discussion-topic-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+}
+
+.discussion-topic-num {
+    display: inline-block;
+    background: #FFF0EB;
+    color: var(--c-primary);
+    font-size: 12px;
+    font-weight: 800;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 8px;
+}
+
+.discussion-topic-title {
+    font-size: 16.5px;
+    font-weight: 700;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: var(--c-text);
+    line-height: 1.5;
+}
+
+/* Acknowledgments Box */
+.acknowledgment-box {
+    background: linear-gradient(135deg, #FFF9F2 0%, #FFF0E5 100%);
+    border-radius: var(--radius-lg);
+    padding: 44px;
+    border: 2px dashed var(--c-primary);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.acknowledgment-box h3 {
+    font-size: 26px;
+    color: var(--c-text);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.acknowledgment-box p {
+    font-size: 16px;
+    color: #4A4A4A;
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 0 auto 16px;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .ceremony-hero-title {
+        font-size: 28px;
+    }
+    .ceremony-meta-card {
+        padding: 20px;
+        grid-template-columns: 1fr;
+    }
+    .ceremony-winner-grid {
+        grid-template-columns: 1fr;
+    }
+    .acknowledgment-box {
+        padding: 24px 20px;
     }
 }

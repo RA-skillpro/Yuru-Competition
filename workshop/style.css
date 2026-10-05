@@ -153,6 +153,8 @@
     overflow: hidden;
     border-radius: var(--radius-sm);
     background-color: #f0f0f0;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    isolation: isolate;
 }
 
 .photo-card img {
