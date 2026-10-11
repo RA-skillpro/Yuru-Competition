@@ -119,3 +119,23 @@ footer{background:#edf7fc;border-top:2px solid #26364a}.footer-inner .logo{color
 .hero-wordmark.is-playing .wordmark-letter{animation:wordmark-pop 650ms cubic-bezier(.22,.7,.3,1) both;animation-delay:calc(var(--order) * 90ms)}
 @keyframes wordmark-pop{0%{transform:translateY(0) rotate(0)}30%{transform:translateY(-12px) rotate(-5deg)}60%{transform:translateY(2px) rotate(3deg)}80%{transform:translateY(-3px) rotate(-1deg)}100%{transform:translateY(0) rotate(0)}}
 @media(prefers-reduced-motion:reduce){.hero-wordmark.is-playing .wordmark-letter{animation:none}}
+
+/* Seamless right-to-left ribbon */
+.color-ribbon{padding:6px 0;overflow:hidden}
+.ribbon-track{display:flex;width:max-content;animation:ribbon-scroll 40s linear infinite}
+.ribbon-group{display:flex;flex-shrink:0;align-items:center}
+.color-ribbon .ribbon-group span{display:block;margin:0;padding:0 32px;color:#ffe180}
+@keyframes ribbon-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ribbon-track{animation:none;width:auto;display:block}.ribbon-group{display:block}.ribbon-group:nth-child(2),.ribbon-group span:nth-child(2){display:none}.color-ribbon .ribbon-group span{white-space:normal;padding:0 16px}}
+
+.hero-learning{display:block;width:100%;height:auto;object-fit:contain}
+@media(max-width:700px){.hero-art:has(.hero-learning){max-width:380px}}
+
+/* Three concept features as white boxes with colored top bands */
+.values{gap:22px;align-items:stretch}
+.values article{background:#fff;border:1px solid #d5dfe7;border-top:7px solid #e6ba35;border-radius:8px;padding:22px 22px 24px;overflow:hidden}
+.values article:nth-child(1){border-color:#d5dfe7;border-top-color:#e6ba35}
+.values article:nth-child(2){border-color:#d5dfe7;border-top-color:#df6c68}
+.values article:nth-child(3){border-color:#d5dfe7;border-top-color:#245caa}
+.values h3{margin:12px 0;font-size:19px}
+@media(max-width:700px){.values{gap:16px}.values article{padding:18px 20px 20px}}
