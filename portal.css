@@ -114,3 +114,8 @@ footer{background:#edf7fc;border-top:2px solid #26364a}.footer-inner .logo{color
 
 /* Rounded lettering for the original circular icon */
 .logo-mark{font-family:"Hiragino Maru Gothic ProN","M PLUS Rounded 1c","Yu Gothic",Meiryo,sans-serif;font-weight:700}
+
+.hero-wordmark .wordmark-letter{display:inline-block;transform-origin:50% 85%}.hero-wordmark i.wordmark-letter{color:#e7694e;transform:rotate(12deg)}
+.hero-wordmark.is-playing .wordmark-letter{animation:wordmark-pop 650ms cubic-bezier(.22,.7,.3,1) both;animation-delay:calc(var(--order) * 90ms)}
+@keyframes wordmark-pop{0%{transform:translateY(0) rotate(0)}30%{transform:translateY(-12px) rotate(-5deg)}60%{transform:translateY(2px) rotate(3deg)}80%{transform:translateY(-3px) rotate(-1deg)}100%{transform:translateY(0) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.hero-wordmark.is-playing .wordmark-letter{animation:none}}
