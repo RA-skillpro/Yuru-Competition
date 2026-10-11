@@ -1,4 +1,4 @@
-/* 
+/*
  * Workshop Report Page Styles
  * Extends the global styles in ../style.css
  */
@@ -109,7 +109,7 @@
     text-align: justify;
 }
 
-.article-card h2, 
+.article-card h2,
 .article-card h3 {
     color: var(--c-text);
     margin-top: 40px;

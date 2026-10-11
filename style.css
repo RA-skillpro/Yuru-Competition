@@ -1,5 +1,5 @@
-/* 
- * Yuru-Competition - Pop & Friendly Theme 
+/*
+ * Yuru-Competition - Pop & Friendly Theme
  * Typography: M PLUS Rounded 1c (Headings) / Kiwi Maru (Body)
  */
 
@@ -1136,19 +1136,19 @@ img[src*="judge_tokuda"] {
     .section-archive {
         padding: 40px 0;
     }
-    
+
     .archive-simple-content h2 {
         font-size: 26px;
     }
-    
+
     .archive-simple-content p {
         font-size: 15px;
     }
-    
+
     .top-announcement {
         font-size: 11px;
     }
-    
+
     .announcement-badge {
         padding: 1px 4px;
     }
@@ -1618,15 +1618,15 @@ img[src*="judge_tokuda"] {
     .winners-hero-title {
         font-size: 30px;
     }
-    
+
     .winner-card-header {
         padding: 16px 20px;
     }
-    
+
     .winner-card-body {
         padding: 20px;
     }
-    
+
     .work-title {
         font-size: 20px;
     }
