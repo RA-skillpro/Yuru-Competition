@@ -139,3 +139,5 @@ footer{background:#edf7fc;border-top:2px solid #26364a}.footer-inner .logo{color
 .values article:nth-child(3){border-color:#d5dfe7;border-top-color:#245caa}
 .values h3{margin:12px 0;font-size:19px}
 @media(max-width:700px){.values{gap:16px}.values article{padding:18px 20px 20px}}
+
+.hero-highlight{background:#ffe180;color:inherit;padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
