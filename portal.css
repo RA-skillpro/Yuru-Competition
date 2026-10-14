@@ -140,4 +140,4 @@ footer{background:#edf7fc;border-top:2px solid #26364a}.footer-inner .logo{color
 .values h3{margin:12px 0;font-size:19px}
 @media(max-width:700px){.values{gap:16px}.values article{padding:18px 20px 20px}}
 
-.hero-highlight{background:#ffe180;color:inherit;padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero-highlight{background:linear-gradient(transparent 78%,#ffe180 78%);color:inherit;padding:0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
